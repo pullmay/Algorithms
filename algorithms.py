@@ -108,8 +108,8 @@ def Euler_phi(n):
 	res = n
 	for factor in divisors:
 		res = res * (factor - 1) // factor
-    return res
+	return res
 
 # squareかどうか判定
 def is_square(n):
-    return n >= 0 and n ** 0.5 % 1 == 0
+	return n >= 0 and n ** 0.5 % 1 == 0
