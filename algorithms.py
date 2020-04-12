@@ -106,4 +106,6 @@ def Euler_phi(n):
 	divisors = prime_factor(n)
 	divisors = set(divisors)
 	res = n
-	for fact
+	for factor in divisors:
+		res = res * (factor - 1) // factor
+	return res
