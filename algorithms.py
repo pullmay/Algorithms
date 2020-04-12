@@ -46,3 +46,64 @@ def segment_sieve(a, b):
 		if is_prime[i]:
 			res.append(a + i)
 	return res
+
+# 約数の列挙 O(n ** 0.5)
+def divisible(n):
+	divisors = []
+	for i in range(1, int(n ** 0.5) + 1):
+		if n % i == 0:
+			divisors.append(i)
+			# nが約数dをもつとき、n/dも約数
+			if i != n // i:
+				divisors.append(n // i)
+	# divisors.sort()
+	return divisors
+
+# 素因数分解 O(n ** 0.5)
+def prime_factor(n):
+	factor = []
+	for i in range(2, int(n ** 0.5) + 1):
+		while (n % i == 0):
+			factor.append(i)
+			n //= i
+	if n != 1:
+		factor.append(n)
+	return factor
+
+# 約数の個数
+def divisible_count(n):
+	divisors = 0
+	for i in range(1, int(n ** 0.5) + 1):
+		if n % i == 0:
+			divisors += 1
+			if i != n // i:
+				divisors += 1
+	return divisors
+
+# 約数の総和
+def divisible_sum(n):
+	divisors = 0
+	for i in range(1, int(n ** 0.5) + 1):
+		if n % i == 0:
+			divisors += i
+			if i != n // i:
+				divisors += n // i
+	return divisors
+
+# 約数の総積
+def divisible_product(n):
+	divisors = 1
+	for i in range(1, int(n ** 0.5) + 1):
+		if n % i == 0:
+			divisors *= i
+			if i != n // i:
+				divisors *= n // i
+	return divisors
+
+# 互いに素なものの総数
+# Euler's phi function
+def Euler_phi(n):
+	divisors = prime_factor(n)
+	divisors = set(divisors)
+	res = n
+	for fact
