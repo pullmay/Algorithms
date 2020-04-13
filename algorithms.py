@@ -127,3 +127,18 @@ def LIS(arr):
 			dp[bisect_left(dp, i)] = i
 	return len(dp)
 
+# nのk進数表現(k=-2)
+# リストで返るので、文字列として出力したい場合は
+# print(*Convert_To_Another_Base(n), sep='')とする
+def Convert_To_Another_Base(n):
+	res = []
+	while (n != 0):
+		r = n % 2
+		if r < 0: # 剰余が負になった場合の処理
+			r += 2
+		n = (n - r) // (-2)
+		res.append(r)
+	if res == []:
+		res.append(0)
+	res = res[::-1] # 逆順になっているので反転させる
+	return res
