@@ -1,3 +1,6 @@
+from bisect import bisect_left
+
+
 # 素数判定 O(n ** 0.5)
 def is_prime(n):
 	for i in range(2, int(n ** 0.5) + 1):
@@ -113,3 +116,14 @@ def Euler_phi(n):
 # squareかどうか判定
 def is_square(n):
 	return n >= 0 and n ** 0.5 % 1 == 0
+
+# LIS
+def LIS(arr):
+	dp = [arr[0]]
+	for i in arr[1:]:
+		if dp[-1] < i:
+			dp.append(i])
+		else:
+			dp[bisect_left(dp, i)] = i
+	return len(dp)
+
