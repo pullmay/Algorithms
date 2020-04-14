@@ -142,3 +142,16 @@ def Convert_To_Another_Base(n):
 		res.append(0)
 	res = res[::-1] # 逆順になっているので反転させる
 	return res
+
+# 繰り返し二乗法
+# a^n mod p を高速に計算
+# 実際はpow(a, n, p)でよい
+def modpow(a, n, mod):
+	res = 1
+	while n > 0:
+		# if n % 2:
+		if n & 1:
+			res = res * a % mod
+		a = a * a % mod
+		n = n >> 1
+	return res
