@@ -1,4 +1,5 @@
 from bisect import bisect_left
+from collections import Counter
 
 
 # 素数判定 O(n ** 0.5)
@@ -164,3 +165,14 @@ def gcd(a, b):
 # 最小公倍数
 def lcm(a, b):
 	return a * b // gcd(a, b)
+
+# Counter
+# 2つのリストの共通要素の個数
+def joint(lst1, lst2):
+	d1 = dict(Counter(lst1))
+	d2 = dict(Counter(lst2))
+	cnt = 0
+	for k in d1:
+		if k in d2:
+			cnt += min(d1[k], d2[k])
+	return cnt
