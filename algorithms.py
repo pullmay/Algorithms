@@ -155,3 +155,9 @@ def modpow(a, n, mod):
 		a = a * a % mod
 		n = n >> 1
 	return res
+
+# 最大公約数
+def gcd(a, b):
+	while b:
+		a, b = b, a % b
+	return a
