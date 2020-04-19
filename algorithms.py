@@ -176,3 +176,10 @@ def joint(lst1, lst2):
 		if k in d2:
 			cnt += min(d1[k], d2[k])
 	return cnt
+
+# 累積和
+def cumsum(lst):
+	res = [0]
+	for v in lst:
+		res.append(res[-1] + v)
+	return res
