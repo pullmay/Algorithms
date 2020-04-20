@@ -1,6 +1,7 @@
 from bisect import bisect_left
 from collections import Counter
-
+import sys
+sys.setrecursionlimit(10 ** 7)
 
 # 素数判定 O(n ** 0.5)
 def is_prime(n):
@@ -183,3 +184,34 @@ def cumsum(lst):
 	for v in lst:
 		res.append(res[-1] + v)
 	return res
+
+# fib
+# メモ化再帰
+def fib_memo(n):
+	dp = [-1] * (n + 1)
+	
+	def fib(n):
+		if n == 0 or n == 1:
+			return 1
+		if dp[n] != -1:
+			return dp[n]
+		dp[n] = fib(n - 1) + fib(n - 2)
+		return dp[n]
+	return fib(n)
+
+# fib
+# loop
+def fib_loop(n):
+	F = [-1] * (n + 1)
+	F[0], F[1] = 1, 1
+	for i in range(2, n + 1):
+		F[i] = F[i - 1] + F[i - 2]
+	return F[n]
+
+# fib 配列
+def fib_array(n):
+	F = [-1] * (n + 1)
+	F[0], F[1] = 1, 1
+	for i in range(2, n + 1):
+		F[i] = F[i - 1] + F[i - 2]
+	return F
