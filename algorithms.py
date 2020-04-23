@@ -253,3 +253,44 @@ def bubble_sort(arr):
 		i += 1
 	return arr
 	
+# マージソート
+def merge_sort(arr, left, right):
+	# merge_sort(lst, 0, len(lst))
+	if right - left == 1:
+		return 
+	mid = left + (right - left) // 2
+	merge_sort(arr, left, mid)
+	merge_sort(arr, mid, right)
+	a = [arr[i] for i in range(left, mid)] \
+		+ [arr[i] for i in range(right - 1, mid - 1, -1)]
+	iterator_left = 0
+	iterator_right = len(a) - 1
+	for i in range(left, right):
+		if a[iterator_left] <= a[iterator_right]:
+			arr[i] = a[iterator_left]
+			iterator_left += 1
+		else:
+			arr[i] = a[iterator_right]
+			iterator_right -= 1
+
+# 線型探索 O(N)
+def linearSearch(A, key):
+	n = len(A) - 1
+	i = 0
+	A[n] = key # 番兵
+	while (A[i] != key):
+		i += 1
+	return i != n
+
+# 二部探索 O(logN)
+def binarySearch(A, key):
+	left, right = 0, len(A)
+	while left < right:
+		mid = (left + right) // 2
+		if A[mid] == key:
+			return True
+		elif key < A[mid]:
+			right = mid
+		else:
+			left = mid + 1
+	return False
