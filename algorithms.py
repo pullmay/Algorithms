@@ -215,3 +215,40 @@ def fib_array(n):
 	for i in range(2, n + 1):
 		F[i] = F[i - 1] + F[i - 2]
 	return F
+
+# 選択ソート
+def selection_sort(arr):
+	n = len(arr)
+	for i in range(n):
+		minj = i
+		for j in range(i, n):
+			if arr[j] < arr[minj]:
+				minj = j
+		arr[i], arr[minj] = arr[minj], arr[i]
+	return arr
+
+# 挿入ソート
+def insert_sort(arr):
+	n = len(arr)
+	for i in range(1, n):
+		v = arr[i]
+		j = i - 1
+		while j >= 0 and arr[j] > v:
+			arr[j + 1] = arr[j]
+			j -= 1
+		arr[j + 1] = v
+	return arr
+
+# バブルソート
+def bubble_sort(arr):
+	n = len(arr)
+	flag = True
+	i = 0
+	while flag:
+		flag = False
+		for j in range(n - 1, 0, -1):
+			if arr[j] < arr[j - 1]:
+				arr[j], arr[j - 1] = arr[j - 1], arr[j]
+				flag = True
+		i += 1
+	return arr
