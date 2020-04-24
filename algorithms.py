@@ -124,7 +124,7 @@ def LIS(arr):
 	dp = [arr[0]]
 	for i in arr[1:]:
 		if dp[-1] < i:
-			dp.append(i])
+			dp.append(i)
 		else:
 			dp[bisect_left(dp, i)] = i
 	return len(dp)
