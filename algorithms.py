@@ -331,3 +331,29 @@ def comb_mod(n, k, mod):
     fact_k = factorial_mod(k, mod)
     fact_n_k = factorial_mod(n - k, mod)
     return (fact_n * pow(fact_k, mod - 2, mod) * pow(fact_n_k, mod - 2, mod)) % mod
+
+# 迷路探索、queueによる幅優先探索
+# 入力に壁あり
+def bfs():
+	# 入力（壁あり）
+	h, w = map(int, input().split()) # height, width
+	sy, sx = map(int, input().split()) # start
+	gy, gx = map(int, input().split()) # goal
+	field = [list(input()) for _ in range(h)] # maze
+
+	# ABC007-Cは、入力が(y, x)の順で与えられるので逆転させる	
+	sy, sx, gy, gx = sx - 1, sy - 1, gx - 1, gy - 1	
+	dxy = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+	q = deque()
+	q.append((sx, sy, 0))
+
+	while q:
+		cx, cy, ct = q.popleft()
+		for dx, dy in dxy:
+			nx, ny = cx + dx, cy + dy
+			if (nx, ny) == (gx, gy):
+				return ct + 1
+			if field[nx][ny] == '#':
+				continue
+			q.append((nx, ny, ct + 1))
+			field[nx][ny] = '#'
