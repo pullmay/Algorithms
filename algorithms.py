@@ -163,6 +163,7 @@ def gcd(a, b):
 	while b:
 		a, b = b, a % b
 	return a
+	
 # 最小公倍数
 def lcm(a, b):
 	return a * b // gcd(a, b)
@@ -357,3 +358,21 @@ def bfs():
 				continue
 			q.append((nx, ny, ct + 1))
 			field[nx][ny] = '#'
+
+# しゃくとり法
+def shakutori(n):
+	res = n + 1
+	right, subsum = 0, 0
+	for left in range(n):
+		while right < n and subsum < k:
+			subsum += a[right]
+			right += 1
+		if subsum < k:
+			break
+		res = min(res, right - left)
+		subsum -= a[left]
+
+		if res > n: # 解なし
+			res = 0
+
+	return res
