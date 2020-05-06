@@ -376,3 +376,16 @@ def shakutori(n):
 			res = 0
 
 	return res
+
+# ランレングス圧縮
+def rle(s):
+	tmp, cnt, res = s[0], 1, ''
+	for i in range(1, len(s)):
+		if tmp == s[i]:
+			cnt += 1
+		else:
+			res += tmp + str(cnt)
+			tmp = s[i]
+			cnt = 1
+	res += tmp + str(cnt)
+	return res
