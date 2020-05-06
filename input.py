@@ -24,8 +24,7 @@ A = [int(input()) for _ in range(n)]
 # 1 1 1 1 1
 # 1 1 1 1 1
 # 1 1 1 1 1
-A = [[int(x) for x in input().split()] for i in range(h)]
-# 
+A = [[int(x) for x in input().split()] for _ in range(h)]
 # print(A) # [[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
 
 # grid
