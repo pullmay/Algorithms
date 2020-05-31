@@ -1,5 +1,6 @@
 from bisect import bisect_left
 from collections import Counter
+from collections import deque
 import sys
 sys.setrecursionlimit(10 ** 7)
 
@@ -46,7 +47,7 @@ def segment_sieve(a, b):
 				is_prime[j - a] = False
 				j += i
 		if a == 1:
-			is_print[0] = False
+			is_prime[0] = False
 	for i in range(len(is_prime)):
 		if is_prime[i]:
 			res.append(a + i)
