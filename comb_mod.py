@@ -18,8 +18,8 @@ fact = [1, 1]
 inv = [0, 1]
 factinv = [1, 1]
 
-MAXN = 2 * 10 ** 5 + 10
-MOD = 10 ** 9 + 7
+MAXN = 2 * 10 ** 5 + 10 # 必要な数を設定
+MOD = 10 ** 9 + 7 # 剰余
 
-make_fact(MAXN, MOD)
+make_fact(MAXN, MOD) # O(N)
 print(comb_mod(100, 50, MOD)) # 538992043
