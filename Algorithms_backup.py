@@ -1,5 +1,6 @@
-from bisect import bisect_left, bisect_right
-from collections import Counter, deque
+from bisect import bisect_left
+from collections import Counter
+from collections import deque
 import sys
 sys.setrecursionlimit(10 ** 7)
 
@@ -333,40 +334,34 @@ def comb_mod(n, k, mod):
 	fact_n_k = factorial_mod(n - k, mod)
 	return (fact_n * pow(fact_k, mod - 2, mod) * pow(fact_n_k, mod - 2, mod)) % mod
 
-# 迷路探索，queue による幅優先探索
-# 入力に壁あり（壁なしにも対応）
+# 迷路探索、queueによる幅優先探索
+# 入力に壁あり
 def bfs():
-	H, W = map(int, input().split())
-	sy, sx = map(int, input().split())
-	gy, gx = map(int, input().split())
-	field = [list(input()) for _ in range(H)]
+	# 入力（壁あり）
+	h, w = map(int, input().split()) # height, width
+	sy, sx = map(int, input().split()) # start
+	gy, gx = map(int, input().split()) # goal
+	field = [list(input()) for _ in range(h)] # maze
 
-	sy, sx, gy, gx = sy - 1, sx - 1, gy - 1, gx - 1
-
-	dyx = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+	# ABC007-Cは、入力が(y, x)の順で与えられるので逆転させる	
+	sy, sx, gy, gx = sx - 1, sy - 1, gx - 1, gy - 1	
+	dxy = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 	q = deque()
-	q.append((sy, sx, 0))
+	q.append((sx, sy, 0))
 
 	while q:
-		cy, cx, ct = q.popleft()
-		for dy, dx in dyx:
-			# 移動
-			ny, nx = cy + dy, cx + dx
-			# 範囲外に行ってしまった場合
-			if ny < 0 or ny >= H or nx < 0 or nx >= W:
-				continue
-			# ゴールに辿り着いた場合
-			if (ny, nx) == (gy, gx):
+		cx, cy, ct = q.popleft()
+		for dx, dy in dxy:
+			nx, ny = cx + dx, cy + dy
+			if (nx, ny) == (gx, gy):
 				return ct + 1
-			# 壁の場合
-			if field[ny][nx] == '#':
+			if field[nx][ny] == '#':
 				continue
-			# queue に追加
-			q.append((ny, nx, ct + 1))
-			field[ny][nx] = '#'
+			q.append((nx, ny, ct + 1))
+			field[nx][ny] = '#'
 
 # しゃくとり法
-def shakutori(n, k, a:list):
+def shakutori(n):
 	res = n + 1
 	right, subsum = 0, 0
 	for left in range(n):
