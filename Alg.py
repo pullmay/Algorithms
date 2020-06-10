@@ -11,10 +11,10 @@ def is_power(n):
 
 # nまでの素数リスト
 def prime_list(n):
-	primes = set(range(2, n + 1))
-	for i in range(2, int(n ** 0.5) + 1):
-		primes.difference_update(range(i * 2, n + 1, i))
-	return list(primes)
+    primes = set(range(2, n + 1))
+    for i in range(2, int(n ** 0.5) + 1):
+        primes.difference_update(range(i * 2, n + 1, i))
+    return list(primes)
 
 # エラトステネスの篩
 # nまでの整数([0,1,...,n])に対して、素数であるかのboolian配列
