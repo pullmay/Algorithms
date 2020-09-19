@@ -29,6 +29,14 @@ def prime_eratosthenes(n):
     primes[0], primes[1] = False, False
     return primes
 
+# 1 から n までの約数の個数
+def count_divisors(n):
+    cnt_div = [0] * (n + 1)
+    for x in range(1, n + 1):
+        for y in range(x, n + 1):
+            cnt_div[y] += 1
+    return cnt_div
+
 # 区間[a, b)内の素数の個数
 def segment_sieve(a, b):
     res = []
