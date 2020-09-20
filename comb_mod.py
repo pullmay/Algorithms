@@ -46,5 +46,4 @@ def perm(n, k):
 def comb(n, k):
     return fact[n] * inv_fact[k] * inv_fact[n - k] % MOD
 
-print(fact[:20])
-print(inv_fact[:20])
+print(comb(100, 50)) # 538992043
