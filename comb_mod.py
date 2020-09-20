@@ -23,3 +23,28 @@ MOD = 10 ** 9 + 7 # 剰余
 
 make_fact(MAXN, MOD) # O(N)
 print(comb_mod(100, 50, MOD)) # 538992043
+
+
+# ----- 2020/9/20 ----- #
+
+MOD = 10 ** 9 + 7
+N = 10 ** 5
+
+fact = [1] * (N + 1)
+inv_fact = [1] * (N + 1)
+
+for i in range(1, N + 1):
+    fact[i] = fact[i - 1] * i % MOD
+
+inv_fact[N] = pow(fact[N], MOD - 2, MOD)
+for i in range(N, 0, -1):
+    inv_fact[i - 1] = inv_fact[i] * i % MOD
+
+def perm(n, k):
+    return fact[n] * inv_fact[n - k] % MOD
+
+def comb(n, k):
+    return fact[n] * inv_fact[k] * inv_fact[n - k] % MOD
+
+print(fact[:20])
+print(inv_fact[:20])
